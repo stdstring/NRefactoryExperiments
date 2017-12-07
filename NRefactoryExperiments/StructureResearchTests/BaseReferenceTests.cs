@@ -239,6 +239,26 @@ namespace StructureResearchTests
             TestCommonBody(source);
         }
 
+        [Test]
+        public void BaseOverloadMethodInEvent()
+        {
+            const String source = "namespace ns\r\n" +
+                                  "{\r\n" +
+                                  "    public delegate void SomeDelegate();\r\n" +
+                                  "    public class A\r\n" +
+                                  "    {\r\n" +
+                                  "        public void M() { }\r\n" +
+                                  "        public void M(int i) { }\r\n" +
+                                  "    }\r\n" +
+                                  "    public class B : A\r\n" +
+                                  "    {\r\n" +
+                                  "        public event SomeDelegate SomeEvent;\r\n" +
+                                  "        public void Do() { SomeEvent += base.M; }\r\n" +
+                                  "    }\r\n" +
+                                  "}";
+            TestCommonBody(source);
+        }
+
         private void TestCommonBody(String source)
         {
             CSharpParser parser = new CSharpParser();
