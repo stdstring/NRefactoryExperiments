@@ -220,6 +220,25 @@ namespace StructureResearchTests
             TestCommonBody(source);
         }
 
+        [Test]
+        public void BaseMethodInEvent()
+        {
+            const String source = "namespace ns\r\n" +
+                                  "{\r\n" +
+                                  "    public delegate void SomeDelegate();\r\n" +
+                                  "    public class A\r\n" +
+                                  "    {\r\n" +
+                                  "        public void M() { }\r\n" +
+                                  "    }\r\n" +
+                                  "    public class B : A\r\n" +
+                                  "    {\r\n" +
+                                  "        public event SomeDelegate SomeEvent;\r\n" +
+                                  "        public void Do() { SomeEvent += base.M; }\r\n" +
+                                  "    }\r\n" +
+                                  "}";
+            TestCommonBody(source);
+        }
+
         private void TestCommonBody(String source)
         {
             CSharpParser parser = new CSharpParser();
@@ -277,23 +296,3 @@ namespace StructureResearchTests
         private const Int32 IndentDelta = 2;
     }
 }
-
-/*namespace ns
-{
-    public class A
-    {
-        public int GetValue() { return 666; }
-        public int GetValue(string s, int i) { return 667; }
-    }
-
-    public class B : A
-    {
-        public int GetValue(int i) { return 13; }
-        public int GetValue(string s) { return 17; }
-    }
-
-    public class C : B
-    {
-        public void Do() { System.Console.WriteLine(13 + 2 * base.GetValue("idkfa", 999)); }
-    }
-}*/
