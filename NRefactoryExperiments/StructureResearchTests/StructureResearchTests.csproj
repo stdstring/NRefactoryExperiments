@@ -85,7 +85,11 @@
   <ItemGroup>
     <Compile Include="AttributesTests.cs" />
     <Compile Include="BaseReferenceTests.cs" />
+    <Compile Include="GenericTests.cs" />
+    <Compile Include="OperatorsTests.cs" />
+    <Compile Include="OverloadMembersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
